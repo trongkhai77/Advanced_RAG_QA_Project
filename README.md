@@ -25,41 +25,31 @@
 
 ### 1. Clone the repository  
 ```bash
-git clone https://github.com/atulkashyap404/RAG-Projects.git
-cd "RAG-Projects/Project 05 Advanced RAG Q&A Project"
+git clone https://github.com/trongkhai77/Advanced_RAG_QA_Project.git
 ```
 
-### 2. Create virtual environment  
-Using **venv**:  
-```bash
-python -m venv venv
-source venv/bin/activate   # Linux/Mac
-venv\Scripts\activate      # Windows
-```
-
-### 3. Install dependencies  
+### 2. Install dependencies  
 ```bash
 pip install -r requirements.txt
 ```
 
 If `requirements.txt` is missing, create one by analyzing imports in `agents.ipynb`.  
 
-### 4. Configure environment variables  
+### 3. Configure environment variables  
 Create a `.env` file:  
 ```env
-OPENAI_API_KEY=your_openai_api_key
-HUGGINGFACE_API_KEY=your_huggingface_api_key
+COHERE_API_KEY=your_cohere_api_key
 VECTOR_DB_PATH=./vector_store
 ```
 
-### 5. Launch Jupyter Notebook  
+### 4. Launch Jupyter Notebook  
 ```bash
 jupyter notebook agents.ipynb
 ```
 
 ---
 
-## 🔎 Testing the Setup  
+## Testing the Setup  
 
 1. Open `agents.ipynb` and run cells step by step.  
 2. Ingest and index sample documents (PDF/text).  
@@ -68,37 +58,6 @@ jupyter notebook agents.ipynb
 
 ---
 
-## 🧰 Docker (Optional)  
-
-Build and run with Docker:  
-```bash
-docker build -t advanced-rag .
-docker run -it --env-file .env -p 8888:8888 advanced-rag
-```
-
----
-
-## ✅ Deployment Checklist  
-
-- [ ] Python/Docker environment configured  
-- [ ] Dependencies installed without conflicts  
-- [ ] `.env` file created with API keys  
-- [ ] Notebook runs without errors  
-- [ ] Sample documents indexed successfully  
-- [ ] Q&A queries executed successfully  
-- [ ] Vector database operational  
-
----
-
-## 📚 References  
+## References  
 - [LangChain Documentation](https://python.langchain.com/docs/)  
 - [RAG-Projects Repository](https://github.com/atulkashyap404/RAG-Projects)  
-
----
-
-## 🏁 Definition of Done  
-- All team members can run the RAG system locally  
-- Full setup and troubleshooting documentation available  
-- Q&A works correctly with sample data  
-- Performance benchmarks established  
-- Code and security reviews completed  
