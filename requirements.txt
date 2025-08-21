@@ -1,9 +1,30 @@
-langchain==0.2.11
-langchain-community==0.2.10
-langchain-openai==0.1.17
-langchain-cohere==0.1.6
-faiss-cpu==1.8.0
-faiss-gpu==1.8.0
-openai==1.40.3
-cohere==5.5.7
-python-dotenv==1.0.1
+# Core LangChain packages
+langchain>=0.1.0
+langchain-community>=0.0.20
+langchain-openai>=0.0.5
+langchain-cohere>=0.1.0
+
+# Vector database and embeddings
+faiss-cpu>=1.7.4
+# Use faiss-gpu if you have GPU support instead of faiss-cpu
+
+# API clients
+cohere>=4.0.0
+openai>=1.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+arxiv>=1.4.0
+wikipedia>=1.4.0
+
+# Web scraping and document processing
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+lxml>=4.9.0
+
+# Text processing
+tiktoken>=0.5.0
+
+# Optional but recommended for better performance
+numpy>=1.24.0
+pandas>=2.0.0
