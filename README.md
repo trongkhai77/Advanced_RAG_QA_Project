@@ -23,17 +23,16 @@
 
 ## Installation & Setup  
 
-### 1. Clone the repository  
+### 1. Set up virtual environment and activate it
 ```bash
-git clone https://github.com/trongkhai77/Advanced_RAG_QA_Project.git
+python -m venv .venv
+source .venv/bin/activate
 ```
 
 ### 2. Install dependencies  
 ```bash
 pip install -r requirements.txt
 ```
-
-If `requirements.txt` is missing, create one by analyzing imports in `agents.ipynb`.  
 
 ### 3. Configure environment variables  
 Create a `.env` file:  
@@ -55,9 +54,3 @@ jupyter notebook agents.ipynb
 2. Ingest and index sample documents (PDF/text).  
 3. Run Q&A queries against the indexed data.  
 4. Validate results from the LLM.  
-
----
-
-## References  
-- [LangChain Documentation](https://python.langchain.com/docs/)  
-- [RAG-Projects Repository](https://github.com/atulkashyap404/RAG-Projects)  
