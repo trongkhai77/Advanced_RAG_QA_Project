@@ -15,5 +15,3 @@ cohere>=4.0.0
 python-dotenv>=1.0.0
 arxiv>=1.4.0
 wikipedia>=1.4.0
-
-notebook>=7.4.1
