@@ -17,3 +17,7 @@ arxiv>=1.4.0
 wikipedia>=1.4.0
 
 notebook>=7.4.1
+
+black
+
+pre-commit
