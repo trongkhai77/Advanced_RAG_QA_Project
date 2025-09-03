@@ -5,8 +5,8 @@ from langchain_community.utilities import WikipediaAPIWrapper
 - this is basically use to query answer from wikipedia
 """
 
-api_wrapper=WikipediaAPIWrapper(top_k_results=1,doc_content_chars_max=200)
-wiki=WikipediaQueryRun(api_wrapper=api_wrapper)
+api_wrapper = WikipediaAPIWrapper(top_k_results=1, doc_content_chars_max=200)
+wiki = WikipediaQueryRun(api_wrapper=api_wrapper)
 
 wiki.name
 
@@ -20,20 +20,30 @@ from langchain_community.vectorstores import FAISS
 
 from dotenv import load_dotenv
 import os
+
 load_dotenv()
 api_key = os.getenv("COHERE_API_KEY")
-os.environ['COHERE_API_KEY'] = api_key
+os.environ["COHERE_API_KEY"] = api_key
 
-loader=WebBaseLoader('https://docs.smith.langchain.com/')
-docs=loader.load()
-documents=RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=200).split_documents(docs)
+loader = WebBaseLoader("https://docs.smith.langchain.com/")
+docs = loader.load()
+documents = RecursiveCharacterTextSplitter(
+    chunk_size=1000, chunk_overlap=200
+).split_documents(docs)
 
-vectordb = FAISS.from_documents(documents, CohereEmbeddings(model="embed-multilingual-v3.0", cohere_api_key=api_key))
+vectordb = FAISS.from_documents(
+    documents, CohereEmbeddings(model="embed-multilingual-v3.0", cohere_api_key=api_key)
+)
 # Tạo retriever
 retriever = vectordb.as_retriever()
 
 from langchain.tools.retriever import create_retriever_tool
-retriever_tool=create_retriever_tool(retriever,"langsmith_search","Search for information about Langsmith. For any questions about LangSmith, you must use this tool")
+
+retriever_tool = create_retriever_tool(
+    retriever,
+    "langsmith_search",
+    "Search for information about Langsmith. For any questions about LangSmith, you must use this tool",
+)
 
 retriever_tool.name
 
@@ -42,13 +52,13 @@ retriever_tool.name
 from langchain_community.utilities import ArxivAPIWrapper
 from langchain_community.tools import ArxivQueryRun
 
-arxiv_wrapper=ArxivAPIWrapper(top_k_results=1, doc_content_chars_max=200)
-arxiv=ArxivQueryRun(arxiv_wrapper=arxiv_wrapper)
+arxiv_wrapper = ArxivAPIWrapper(top_k_results=1, doc_content_chars_max=200)
+arxiv = ArxivQueryRun(arxiv_wrapper=arxiv_wrapper)
 arxiv.name
 
 """## Combine All Tools"""
 
-tools=[wiki,arxiv,retriever_tool]
+tools = [wiki, arxiv, retriever_tool]
 
 tools
 
@@ -58,25 +68,24 @@ tools
 """
 from langchain_cohere import ChatCohere
 
-llm = ChatCohere(
-    model="command-r-plus",
-    temperature=0,
-    cohere_api_key=api_key
-)
+llm = ChatCohere(model="command-r-plus", temperature=0, cohere_api_key=api_key)
 
 from langchain import hub
+
 prompt = hub.pull("hwchase17/openai-functions-agent")
 prompt.messages
 
 from langchain.agents import create_openai_tools_agent
-agent=create_openai_tools_agent(llm,tools,prompt)
+
+agent = create_openai_tools_agent(llm, tools, prompt)
 
 """## Agent Executor"""
 
 from langchain.agents import AgentExecutor
-agent_executor=AgentExecutor(agent=agent,tools=tools,verbose=True)
+
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 agent_executor
 
-response=agent_executor.invoke({"input":"What's the paper 1605.08386 about?"})
+response = agent_executor.invoke({"input": "What's the paper 1605.08386 about?"})
 
 print(response)
