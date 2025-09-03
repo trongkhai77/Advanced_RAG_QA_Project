@@ -41,14 +41,18 @@ COHERE_API_KEY=your_cohere_api_key
 VECTOR_DB_PATH=./vector_store
 ```
 
+
 ### 4. Set up pre-commit hooks (optional but recommended)
 ```bash
 pre-commit install
 ```
 
 ### 5. Launch Jupyter Notebook  
+
+### 4. Run python script
+
 ```bash
-jupyter notebook agents.ipynb
+python agents.py
 ```
 
 ---
@@ -79,7 +83,7 @@ pre-commit run --all-files
 
 ## Testing the Setup  
 
-1. Open `agents.ipynb` and run cells step by step.  
+1. Open `agents.py` and run cells step by step.  
 2. Ingest and index sample documents (PDF/text).  
 3. Run Q&A queries against the indexed data.  
 4. Validate results from the LLM.  
