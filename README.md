@@ -41,9 +41,38 @@ COHERE_API_KEY=your_cohere_api_key
 VECTOR_DB_PATH=./vector_store
 ```
 
-### 4. Launch Jupyter Notebook  
+### 4. Set up pre-commit hooks (optional but recommended)
+```bash
+pre-commit install
+```
+
+### 5. Launch Jupyter Notebook  
 ```bash
 jupyter notebook agents.ipynb
+```
+
+---
+
+## Code Formatting and Quality
+
+This project uses **Black** for code formatting and **pre-commit** hooks for code quality checks.
+
+### Using Black
+Format your Python code:
+```bash
+black .
+```
+
+### Using Pre-commit
+Pre-commit hooks will automatically run on each commit to ensure code quality:
+- **YAML validation** - checks YAML file syntax
+- **End of file fixer** - ensures files end with newlines
+- **Trailing whitespace removal** - removes trailing whitespace
+- **Black formatting** - automatically formats Python code
+
+To run pre-commit hooks manually:
+```bash
+pre-commit run --all-files
 ```
 
 ---
