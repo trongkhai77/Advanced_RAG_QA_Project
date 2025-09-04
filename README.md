@@ -1,5 +1,7 @@
 # Advanced RAG Q&A Project
 
+A FastAPI-based Retrieval Augmented Generation (RAG) system with modular architecture, featuring multiple search tools and LangChain agent integration.
+
 ## System Requirements
 
 ### Hardware
@@ -18,9 +20,11 @@
 
 ### Additional Components
 
-- Vector database: **ChromaDB** or **FAISS**
+- Vector database: **FAISS**
 - Embedding models: **Cohere**
 - LLM providers: **Cohere**
+- Web framework: **FastAPI**
+- Agent framework: **LangChain**
 
 ---
 
@@ -54,11 +58,27 @@ VECTOR_DB_PATH=./vector_store
 pre-commit install
 ```
 
-### 4. Run python script
+### 5. Start the FastAPI server
 
 ```bash
-python agents.py
+# Run FastAPI server with hot reload
+python run.py
+
+# Alternative: Direct uvicorn command
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
+
+The server will start on `http://localhost:8000` with:
+
+- API documentation at `/docs`
+- Alternative docs at `/redoc`
+
+### 6. Available API Endpoints
+
+- `POST /api/v1/query` - Process queries asynchronously
+- `POST /api/v1/query/sync` - Process queries synchronously
+- `GET /api/v1/health` - Health check with tool availability
+- `GET /api/v1/tools` - List available tools with status
 
 ---
 
@@ -88,3 +108,29 @@ To run pre-commit hooks manually:
 ```bash
 pre-commit run --all-files
 ```
+
+---
+
+## Architecture Overview
+
+This FastAPI application features a modular RAG system with:
+
+### Core Components
+
+- **FastAPI Application**: Main web server with CORS middleware and OpenAPI docs
+- **Agent System**: LangChain-based agents with Cohere LLM integration
+- **Tool Architecture**: Modular tools for Wikipedia, ArXiv, and document retrieval
+- **Service Layer**: Query processing and agent executor management
+
+### Available Tools
+
+- **Wikipedia Search**: Academic and general knowledge queries
+- **ArXiv Search**: Scientific paper and research queries
+- **Document Retriever**: LangSmith-based document retrieval
+
+### Key Technologies
+
+- **FastAPI**: High-performance web framework with automatic API documentation
+- **LangChain**: Agent framework for tool integration and workflow management
+- **Cohere**: LLM provider for chat completions and embeddings
+- **FAISS**: Vector database for efficient similarity search
