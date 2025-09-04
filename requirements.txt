@@ -6,18 +6,10 @@ langchain-cohere>=0.1.0
 
 # Vector database and embeddings
 faiss-cpu>=1.7.4
-# Use faiss-gpu if you have GPU support instead of faiss-cpu
-
-# API clients
-cohere>=4.0.0
 
 # Utilities
 python-dotenv>=1.0.0
 arxiv>=1.4.0
 wikipedia>=1.4.0
-
-notebook>=7.4.1
-
-black
-
-pre-commit
+pre-commit>=4.3.0
+black>=25.1.0

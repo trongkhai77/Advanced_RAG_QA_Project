@@ -54,7 +54,7 @@ VECTOR_DB_PATH=./vector_store
 pre-commit install
 ```
 
-### 4. Run python script
+### 5. Run python script
 
 ```bash
 python agents.py

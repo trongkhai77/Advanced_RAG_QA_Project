@@ -12,9 +12,7 @@ wiki.name
 
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import FAISS
-from langchain_openai import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-import cohere
 from langchain_cohere import CohereEmbeddings
 from langchain_community.vectorstores import FAISS
 
