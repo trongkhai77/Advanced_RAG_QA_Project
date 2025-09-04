@@ -7,6 +7,11 @@ langchain-cohere>=0.1.0
 # Vector database and embeddings
 faiss-cpu>=1.7.4
 
+# FastAPI and web framework
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+pydantic-settings>=2.0.3
+
 # Utilities
 python-dotenv>=1.0.0
 arxiv>=1.4.0
