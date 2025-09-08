@@ -16,7 +16,6 @@ A FastAPI-based Retrieval Augmented Generation (RAG) system with modular archite
 - **Python 3.8+** (recommended 3.10+)
 - **Docker & Docker Compose**
 - **Git**
-- **Jupyter Notebook/Lab**
 
 ### Additional Components
 

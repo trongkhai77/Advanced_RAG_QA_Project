@@ -1,12 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.responses import JSONResponse
 from ..models import QueryRequest, QueryResponse, HealthResponse, ErrorResponse
 from ..services.query_service import get_query_service, QueryService
+from .background_tasks_routes import background_tasks_router
 import logging
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
+router.include_router(background_tasks_router)
 
 
 @router.post(
