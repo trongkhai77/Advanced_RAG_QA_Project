@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
@@ -22,6 +23,21 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Startup event handler."""
+    logger.info("Starting Advanced RAG QA Project...")
+    logger.info(f"LangSmith URL: {settings.langsmith_url}")
+    logger.info(f"Cohere Model: {settings.cohere_model}")
+    logger.info("Application started successfully!")
+
+    yield
+
+    """Shutdown event handler."""
+    logger.info("Shutting down Advanced RAG QA Project...")
+
+
 # Create FastAPI app
 app = FastAPI(
     title="Advanced RAG QA Project",
@@ -29,6 +45,7 @@ app = FastAPI(
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc",
+    lifespan=lifespan,
 )
 
 # Add CORS middleware
@@ -48,21 +65,6 @@ app.add_exception_handler(Exception, general_exception_handler)
 
 # Include API routes
 app.include_router(router, prefix="/api/v1", tags=["RAG Agent"])
-
-
-@app.on_event("startup")
-async def startup_event():
-    """Startup event handler."""
-    logger.info("Starting Advanced RAG QA Project...")
-    logger.info(f"LangSmith URL: {settings.langsmith_url}")
-    logger.info(f"Cohere Model: {settings.cohere_model}")
-    logger.info("Application started successfully!")
-
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    """Shutdown event handler."""
-    logger.info("Shutting down Advanced RAG QA Project...")
 
 
 @app.get("/")
